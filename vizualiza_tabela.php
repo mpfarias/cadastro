@@ -91,7 +91,10 @@ $real_saldo=number_format($saldo,2,',','.');
 					</table><center>
 					<table width=60% border=0>
 					<tr>
-					<td width=30%><h1>Descrição:</h1><td width=30%><h1>Valor:</td><td width=20%><h1>Data:</td><td></td>
+					<td width=30%><h1>Descrição:</h1>
+						<td width=30%><h1>Valor:</td>
+						<td width=20%><h1>Data:</td>
+						<td></td>
 <?php
 mysqli_select_db($conexao, "controle"); // Selecionando o banco de dados
 $res_fixas = mysqli_query($conexao, "SELECT * FROM fixas");
@@ -104,12 +107,17 @@ while($linha = mysqli_fetch_array($res_fixas))
 	$realf=number_format($valorf,2,',','.');
 	echo "<table width=60% border=0>
 	<tr>
-	<td width=30%><u><a href=Edita.php?id=$idf>".$linha['local']."</u></a><font color='red'> (Despesa Fixa)</font></td><td width=30% align=left><font color='red'><u>-R$ ".$realf."</font></td><td align=left width=20%>".$linha['data']."/".$mes_num."/".$ano_num."</td><td><a href=deletar.php?id=$idf>Apagar registro</a></td></tr></table>";}
+	<td width=30%><u><a href=Edita.php?id=$idf>".$linha['local']."</u></a><font color='red'> (Despesa Fixa)</font></td>
+	<td width=30% align=left><font color='red'><u>-R$ ".$realf."</font></td>
+	<td align=left width=20%>".$linha['data']."/".$mes_num."/".$ano_num."</td>
+	<td><a href=deletar.php?id=$idf>Apagar registro</a></td>
+	</tr>
+	</table>";
+}
 	?>
-	
 	</td>
-	
-	<?php
+<?php
+
 $resultado = mysqli_query($conexao, "SELECT * FROM despesas WHERE mes='".$mes."' ORDER BY data ASC"); // Há variável $resultado faz uma consulta em nossa tabela selecionando todos os registros de todos os campos
 
 while($linha = mysqli_fetch_array($resultado)) //Já a instrução while faz um loop entre todos os registros e armazena seus valores na variável $linha
@@ -122,7 +130,15 @@ while($linha = mysqli_fetch_array($resultado)) //Já a instrução while faz um 
 
 echo "<table width=60% border=0>
 	<tr>
-	<td width=30%><u><a href=Edita.php?id=$id>".$linha['local']."</a></td><td width=30% align=left><font color='red'><u>-R$ ".$real."</font></td><td align=left width=20%>".$linha['data']."</td><td><a href=deletar.php?id=$id>Apagar registro</a></td></tr></table>";}?></td>
+	<td width=30%><u><a href=Edita.php?id=$id>".$linha['local']."</a></td>
+	<td width=30% align=left><font color='red'><u>-R$ ".$real."</font></td>
+	<td align=left width=20%>".$linha['data']."</td>
+	<td><a href=deletar.php?id=$id>Apagar registro</a></td>
+		</tr>
+		</table>";
+}
+				?>
+	</td>
 				</tr>
 				<tr>
 				<td colspan=3><br><br>Total das despesas = <font color=#990000>- R$ <?php
